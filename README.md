@@ -54,3 +54,33 @@ para facilitar la ejecución del proyecto se hace tracking de *.example
 
 ### **USO**
 Se debe realizar los request a los endpoints haciendo uso de algún cliente de HTTP, se recomienda utilizar *Postman*
+
+#### [FUNCIONALIDAD 1] - Permita que la aplicación móvil mande las coordenadas del Houmer
+* **URL** : http://localhost:8101/weather/?city=Bogota&country=co
+* **Method** `GET`
+* **Success Response:**
+    * **Code** 200 <br/>
+    **Content** 
+    ```json
+    {
+        "location_name": "Bogota, CO",
+        "temperature_celsius": "12.73 C",
+        "temperature_fahrenheit": "54.91 F",
+        "wind": "2.06 m/s, Northeast",
+        "cloudiness": "20 %",
+        "pressure": "1028 hpa",
+        "humidity": "67%",
+        "sunrise": "06:12",
+        "sunset": "18:07",
+        "geo_coordinates": "[4.6097, -74.0817]",
+        "requested_time": "2023-02-01T09:20:48"
+    }
+    ```
+---
+
+### **TESTING**
+```sh
+docker-compose exec backend bash
+python manage.py test
+exit
+```
