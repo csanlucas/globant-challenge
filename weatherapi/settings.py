@@ -116,7 +116,14 @@ elif GLOBANTAPI_ENV == ENV_LOCAL:
         }
     }
 else:
-    raise Exception("Database configuration for {} not defined".format(HOUMAPI_ENV))
+    raise Exception("Database configuration for {} not defined".format(GLOBANTAPI_ENV))
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'weather_cache_table',
+    }
+}
 
 
 # Password validation
