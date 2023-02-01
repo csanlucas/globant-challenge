@@ -55,7 +55,6 @@ para facilitar la ejecución del proyecto se hace tracking de *.example
 ### **USO**
 Se debe realizar los request a los endpoints haciendo uso de algún cliente de HTTP, se recomienda utilizar *Postman*
 
-#### [FUNCIONALIDAD 1] - Permita que la aplicación móvil mande las coordenadas del Houmer
 * **URL** : http://localhost:8101/weather/?city=Bogota&country=co
 * **Method** `GET`
 * **Success Response:**
