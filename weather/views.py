@@ -1,16 +1,20 @@
-from django.shortcuts import render
 from datetime import datetime as dt
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 import re
 import requests
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .constants import WEATHER_PARTY_HOST, KELVIN_TO_CELSIUS, degreeToCompassLabel
+from .constants import WEATHER_PARTY_HOST, KELVIN_TO_CELSIUS, WEATHER_TTL_S, degreeToCompassLabel
 from weatherapi.secrets import Config
 
 class WeatheViewSet(APIView):
 
+    @method_decorator(cache_page(WEATHER_TTL_S))
+    @method_decorator(vary_on_cookie)
     def get(self, request):
         if not all(k in request.query_params for k in ("city", "country")):
             return Response({'error': 'Provide valid parameters'}, status=status.HTTP_400_BAD_REQUEST)
